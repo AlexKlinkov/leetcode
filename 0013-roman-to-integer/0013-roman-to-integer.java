@@ -1,7 +1,7 @@
 class Solution {
     public int romanToInt(String s) {
        int answer = 0;
-        char [] mySting = s.toCharArray();
+        char [] myString = s.toCharArray();
         HashMap<Character, Integer> mySymbolsAndTheirValues = new HashMap<>();
         mySymbolsAndTheirValues.put('I', 1);
         mySymbolsAndTheirValues.put('V', 5);
@@ -14,34 +14,34 @@ class Solution {
         while (count < s.length()) {
             boolean flag = true;
             if (count + 1 != s.length()) {
-                if (mySting[count] == 'I' && mySting[count + 1] == 'V') {
+                if (myString[count] == 'I' && myString[count + 1] == 'V') {
                     answer += 4;
                     count += 2;
                     flag = false;
-                } else if (mySting[count] == 'I' && mySting[count + 1] == 'X') {
+                } else if (myString[count] == 'I' && myString[count + 1] == 'X') {
                     answer += 9;
                     count += 2;
                     flag = false;
-                } else if (mySting[count] == 'X' && mySting[count + 1] == 'L') {
+                } else if (myString[count] == 'X' && myString[count + 1] == 'L') {
                     answer += 40;
                     count += 2;
                     flag = false;
-                } else if (mySting[count] == 'X' && mySting[count + 1] == 'C') {
+                } else if (myString[count] == 'X' && myString[count + 1] == 'C') {
                     answer += 90;
                     count += 2;
                     flag = false;
-                } else if (mySting[count] == 'C' && mySting[count + 1] == 'D') {
+                } else if (myString[count] == 'C' && myString[count + 1] == 'D') {
                     answer += 400;
                     count += 2;
                     flag = false;
-                } else if (mySting[count] == 'C' && mySting[count + 1] == 'M') {
+                } else if (myString[count] == 'C' && myString[count + 1] == 'M') {
                     answer += 900;
                     count += 2;
                     flag = false;
                 }
             }
                 if (flag) {
-                    answer += mySymbolsAndTheirValues.get(mySting[count]);
+                    answer += mySymbolsAndTheirValues.get(myString[count]);
                     count += 1;
                 }
         }

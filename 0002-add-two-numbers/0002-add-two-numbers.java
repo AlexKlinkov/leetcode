@@ -41,5 +41,6 @@ class Solution {
             answer[j].next = answer[j + 1];
         }
         return answer[0];
+        
     }
 }

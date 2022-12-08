@@ -40,7 +40,6 @@ class Solution {
         for (int j = 0; j < elementsOfSum.length - 1; j++) {
             answer[j].next = answer[j + 1];
         }
-        return answer[0];
-        
+        return answer[0]; 
     }
 }

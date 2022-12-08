@@ -45,7 +45,6 @@ class Solution {
                     count += 1;
                 }
         }
-        return answer; 
-        
+        return answer;
     }
 }

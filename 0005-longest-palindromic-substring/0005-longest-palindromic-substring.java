@@ -16,11 +16,11 @@ class Solution {
         }
         return result.toString();
     }
-    public static String getPalindrome(String s, int left, int right) {
+    public static StringBuilder getPalindrome(String s, int left, int right) {
         while (left >= 0 && right < s.length() && s.toCharArray()[left] == s.toCharArray()[right]){
             left--;
             right++;
         }
-        return s.substring(left + 1, right);
+        return new StringBuilder(s.substring(left + 1, right));
     }
 }

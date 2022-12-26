@@ -3,27 +3,23 @@ import java.math.BigInteger;
 class Solution {
     public int reverse(int x) {
         if (validate(BigInteger.valueOf(x))) {
-            StringBuilder reverseResult = new StringBuilder(String.valueOf(x)).reverse();
-            StringBuilder reverseResultForNegativeDigit = new StringBuilder();
-            if (Objects.equals(reverseResult.substring(reverseResult.length() - 1, reverseResult.length()), "-")) {
-                reverseResultForNegativeDigit.append("-");
-                reverseResultForNegativeDigit.append(reverseResult.substring(0, reverseResult.length() - 1));
-                if (validate(new BigInteger(reverseResultForNegativeDigit.toString()))) {
-                    return Integer.parseInt(reverseResultForNegativeDigit.toString());
-                }
+            StringBuilder result = new StringBuilder(String.valueOf(x)).reverse();
+            String returnResult;
+            if (String.valueOf(result.substring(result.length() - 1, result.length())).equals("-")) {
+                result.insert(0, result.substring(result.length() - 1));
+                returnResult = String.valueOf(result.substring(0, result.length() - 1));
             } else {
-                if (validate(new BigInteger(reverseResult.toString()))) {
-                    return Integer.parseInt(reverseResult.toString());
-                }
+                returnResult = String.valueOf(result.substring(0, result.length()));
+            }
+            if (validate(new BigInteger(returnResult))) {
+                return Integer.parseInt(returnResult);
             }
         }
         return 0;
     }
-    public static boolean validate (BigInteger x) {
-        if (x.compareTo(BigInteger.valueOf((long) -Math.pow(2, 31))) >= 0 &&
-                x.compareTo(BigInteger.valueOf((long) Math.pow(2, 31) - 1)) <= 0) {
-            return true;
-        }
-        return false;
+
+    public static boolean validate(BigInteger x) {
+        return x.compareTo(BigInteger.valueOf((long) -Math.pow(2, 31))) >= 0 &&
+                x.compareTo(BigInteger.valueOf((long) Math.pow(2, 31) - 1)) <= 0;
     }
 }

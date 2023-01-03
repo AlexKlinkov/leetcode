@@ -6,8 +6,9 @@ class Solution {
         int count = 0;
         int leftOverFromDivide;
         while (count < havingDigits.length) {
+            leftOverFromDivide = num / havingDigits[count];
             if (num >= havingDigits[count]) {
-                leftOverFromDivide = num - havingDigits[count] * (num / havingDigits[count]);
+                leftOverFromDivide = num - havingDigits[count] * leftOverFromDivide;
                 for (int i = 0; i < num / havingDigits[count]; i++) {
                     result.append(havingSymbols[count]);
                 }

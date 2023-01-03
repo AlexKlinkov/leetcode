@@ -7,7 +7,7 @@ class Solution {
         int leftOverFromDivide;
         while (count < havingDigits.length) {
             leftOverFromDivide = num / havingDigits[count];
-            if (leftOverFromDivide != 0 && num >= havingDigits[count]) {
+            if (num >= havingDigits[count]) {
                 leftOverFromDivide = num - havingDigits[count] * leftOverFromDivide;
                 for (int i = 0; i < num / havingDigits[count]; i++) {
                     result.append(havingSymbols[count]);

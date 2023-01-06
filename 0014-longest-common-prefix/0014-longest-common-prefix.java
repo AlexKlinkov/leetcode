@@ -1,10 +1,9 @@
 class Solution {
     public String longestCommonPrefix(String[] strs) {
         String prefix = (String) Arrays.stream(strs).min(Comparator.comparingInt(String::length)).stream().toArray()[0];
-        String theMostLengthWordInArray =
-                (String) Arrays.stream(strs).max(Comparator.comparingInt(String::length)).stream().toArray()[0];
         int count = 0;
-        while (count <= theMostLengthWordInArray.length()){
+        int amountOfRepeated = prefix.length();
+        while (count <= amountOfRepeated){
             if (checkThatAllElemContainsPrefix(strs, prefix)) {
                 return prefix;
             }

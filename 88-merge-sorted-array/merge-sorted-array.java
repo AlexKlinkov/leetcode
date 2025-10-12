@@ -21,8 +21,5 @@ class Solution {
             j -= 1;
             k -= 1;
         }
-        for (int l = 0; l < nums1.length; l++) {
-            System.out.println(nums1[l]);
-        }
     }
 }

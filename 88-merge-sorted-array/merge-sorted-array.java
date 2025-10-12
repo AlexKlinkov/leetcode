@@ -1,6 +1,6 @@
 class Solution {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
-                int i = m - 1; // the last elem in nums1
+        int i = m - 1; // the last elem in nums1
         int j = n - 1; // the last elem in nums2
         int k = m + n - 1; // the last position in nums1
 

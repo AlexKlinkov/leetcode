@@ -8,7 +8,7 @@ class Solution {
         while (count < intervals.length) {
             int[] prev = result.getLast();
             int[] next = intervals[count];
-            // the next interval completely enters into previous one or the next interval overlaps with the previous one
+            // the next interval completely enters into previous one or the next interval overlaps with the previous one or butt joint
             if (prev[0] <= next[0] && prev[1] >= next[0]) {
                 result.set(result.size() - 1, new int[]{prev[0], Math.max(prev[1], next[1])});
             } else {

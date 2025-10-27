@@ -9,8 +9,8 @@ class Solution {
             int startCookingTime = Math.max(startTimeForCooking, arriveTime);
             int completionTime = startCookingTime + cookingTime;
             totalWaitingTime += completionTime - arriveTime;
-
-            startTimeForCooking = completionTime; // refresh start cooking time
+            // refresh start cooking time
+            startTimeForCooking = completionTime;
         }
         return totalWaitingTime / customers.length;
     }

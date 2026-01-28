@@ -11,7 +11,7 @@
  */
 public class Solution {
     public boolean hasCycle(ListNode head) {
-        if (head == null || head.next == null) // check a list contains more than 1 element
+        if (head == null || head.next == null) // check a list not null and it contains more than 1 element
             return false;
 
         ListNode pointerSlow = head; // turtle

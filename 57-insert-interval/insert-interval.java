@@ -1,37 +1,30 @@
 class Solution {
     public int[][] insert(int[][] intervals, int[] newInterval) {
+        // Gets united combined sorted array by the first element using asc approach
+        int[][] combinedArray = getCombinedTwoArraysWhichSortedByTheFirstElemInASCWay(intervals, newInterval);
 
+        List<int[]> merged = new ArrayList<>(); // creates a list for the answer
+        merged.add(combinedArray[0]); // adds the first element for checking
 
-        int[][] combinedArray = combineTwoArrays(intervals, newInterval);
+        for (int i = 1; i < combinedArray.length; i++) {
 
-
-        List<int[]> merged = new ArrayList<>();
-        merged.add(combinedArray[0]);
-
-        for (int[] interval : combinedArray) {
-            if (isOverlapIntervals(merged.getLast(), interval)) {
-                int[] mergedInterval = getMergedOverlappedIntervals(merged.getLast(), interval);
-
-                if (!merged.contains(mergedInterval))
-                    merged.set(merged.size() - 1, mergedInterval);
-
+            if (isOverlapIntervals(merged.getLast(), combinedArray[i])) {
+                merged.set(merged.size() - 1, getMergedOverlappedIntervals(merged.getLast(), combinedArray[i]));
             } else {
-                if (!merged.contains(interval))
-                    merged.add(interval);
+                merged.add(combinedArray[i]);
             }
         }
+
         return merged.toArray(new int[merged.size()][]);
     }
 
-    private static int[][] combineTwoArrays(int[][] firstArr, int[] secondArr) {
-        int[][] combinedArray = new int[firstArr.length + 1][2];
+    private static int[][] getCombinedTwoArraysWhichSortedByTheFirstElemInASCWay(int[][] firstArr, int[] secondArr) {
+        List<int[]> sortedListByFirstElement = new ArrayList<>(Arrays.asList(firstArr));
+        sortedListByFirstElement.add(secondArr);
 
-        for (int i = 0; i < firstArr.length; i++) {
-            combinedArray[i] = firstArr[i];
-        }
-        combinedArray[combinedArray.length - 1] = secondArr;
-
-        return Arrays.stream(combinedArray).sorted(Comparator.comparingInt(a -> a[0])).toArray(int[][]::new);
+        return sortedListByFirstElement.stream()
+                .sorted(Comparator.comparingInt(a -> a[0]))
+                .toArray(int[][]::new);
     }
 
     private static boolean isOverlapIntervals(int[] interval1, int[] interval2) {
@@ -40,8 +33,10 @@ class Solution {
 
     private static int[] getMergedOverlappedIntervals(int[] interval1, int[] interval2) {
         int[] mergedIntervals = new int[2];
-        mergedIntervals[0] = Math.min(interval1[0],  interval2[0]);
-        mergedIntervals[1] = Math.max(interval1[1],   interval2[1]);
+
+        mergedIntervals[0] = Math.min(interval1[0], interval2[0]);
+        mergedIntervals[1] = Math.max(interval1[1], interval2[1]);
+
         return mergedIntervals;
     }
 }

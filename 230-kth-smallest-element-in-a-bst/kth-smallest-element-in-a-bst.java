@@ -38,6 +38,6 @@ class Solution {
             currentNode = currentNode.right;
         }
 
-        return -1; // k is invalid (greater than tree size)
+        return -1;
     }
 }

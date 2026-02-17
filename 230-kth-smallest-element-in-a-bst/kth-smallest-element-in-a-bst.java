@@ -15,34 +15,29 @@
  */
 class Solution {
     public int kthSmallest(TreeNode root, int k) {
-        Stack<Integer> result = new Stack<>();
-
-        TreeNode currentNode = root;
-
         Stack<TreeNode> stack = new Stack<>();
-        stack.push(currentNode);
-
+        TreeNode currentNode = root;
+        
         int count = 0;
         while (currentNode != null || !stack.isEmpty()) {
-
+            // Reach the leftmost node
             while (currentNode != null) {
                 stack.push(currentNode);
                 currentNode = currentNode.left;
             }
 
             currentNode = stack.pop();
+            count++;
 
-            if (count < k) {
-                result.add(currentNode.val);
-                if (count == k - 1) {
-                    return result.peek();
-                }
+            // When count reaches k, we found our answer
+            if (count == k) {
+                return currentNode.val;
             }
 
+            // Move to right subtree
             currentNode = currentNode.right;
-            count++;
         }
 
-        return result.peek();
+        return -1; // k is invalid (greater than tree size)
     }
 }

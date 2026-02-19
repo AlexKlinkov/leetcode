@@ -24,17 +24,17 @@ class Solution {
         queue.offer(root);
 
         while (!queue.isEmpty()) {
-            int levelSize = queue.size();
+            int currentLevelSize = queue.size();
             List<Integer> currentLevel = new ArrayList<>();
 
-            for (int i = 0; i < levelSize; i++) {
-                var currentNode = queue.poll();
-                currentLevel.add(currentNode.val);
+            for (int i = 0; i < currentLevelSize; i++) {
+                TreeNode node = queue.poll();
+                currentLevel.add(node.val);
 
-                if (currentNode.left != null)
-                    queue.offer(currentNode.left);
-                if (currentNode.right != null)
-                    queue.offer(currentNode.right);
+                if (node.left != null)
+                    queue.offer(node.left);
+                if (node.right != null)
+                    queue.offer(node.right);
             }
 
             result.add(currentLevel);

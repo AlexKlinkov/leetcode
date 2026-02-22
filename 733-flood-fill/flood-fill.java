@@ -27,4 +27,30 @@ class Solution {
     private static boolean isArrayWithinBoundaries(int[][] image, int r, int c) {
         return r >= 0 && r < image.length && c >= 0 && c < image[0].length;
     }
+
+// BFS approach
+/*
+public static int[][] floodFillBFS(int[][] image, int sr, int sc, int color) {
+    if (image[sr][sc] == color) return image;
+
+    int originalColor = image[sr][sc];
+    Queue<int[]> queue = new LinkedList<>();
+    queue.offer(new int[]{sr, sc});
+
+    while (!queue.isEmpty()) {
+        int[] pixel = queue.poll();
+        int r = pixel[0], c = pixel[1];
+
+        if (image[r][c] != originalColor) continue;
+
+        image[r][c] = color;
+
+        // Add neighbors
+        if (r > 0) queue.offer(new int[]{r-1, c});
+        if (r < image.length-1) queue.offer(new int[]{r+1, c});
+        if (c > 0) queue.offer(new int[]{r, c-1});
+        if (c < image[0].length-1) queue.offer(new int[]{r, c+1});
+    }
+    return image;
+}*/
 }

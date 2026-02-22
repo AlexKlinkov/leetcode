@@ -4,7 +4,8 @@ class Solution {
         if (image[sr][sc] == color)
             return image;
 
-        depthFirstSearch(image, sr, sc, image[sr][sc], color);
+        int originalColor = image[sr][sc];
+        depthFirstSearch(image,  sr, sc, originalColor, color);
 
         return image;
     }
@@ -16,14 +17,14 @@ class Solution {
         image[r][c] = newColor;
 
         // checks 4 directions
-        depthFirstSearch(image, r, c - 1, originalColor, newColor); // left
+        depthFirstSearch(image, r + 1, c, originalColor, newColor); // up
+        depthFirstSearch(image, r - 1, c, originalColor, newColor); // down
         depthFirstSearch(image, r, c + 1, originalColor, newColor); // right
-        depthFirstSearch(image, r - 1, c, originalColor, newColor); // up
-        depthFirstSearch(image, r + 1, c, originalColor, newColor); // down
+        depthFirstSearch(image, r, c - 1, originalColor, newColor); // left
+
     }
 
     private static boolean isArrayWithinBoundaries(int[][] image, int r, int c) {
-        return r >= 0 && r < image.length &&
-                c >= 0 && c < image[0].length;
+        return r >= 0 && r < image.length && c >= 0 && c < image[0].length;
     }
 }

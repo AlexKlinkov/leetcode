@@ -8,27 +8,26 @@ class Solution {
     private static void backtrack(List<List<Integer>> result, int[] nums, int start) {
         // Base case:
         if (start == nums.length - 1) {
-            // Converts array to list and add to result
-            List<Integer> permutation = new ArrayList<>();
+            List<Integer> list = new ArrayList<>();
+
             for (int num : nums) {
-                permutation.add(num);
+                list.add(num);
             }
-            result.add(permutation);
+
+            result.add(list);
             return;
         }
 
-        for (int i = start; i < nums.length; i++) {
-            swap(nums, start, i); // swaps current index with i
+        for(int i = start; i < nums.length; i++) {
+            swap(nums, i, start); // swaps current index with i
             backtrack(result, nums, start + 1); // recursively generates permutations for the remaining elements
-            swap(nums, start, i); // backtrack: swaps back to restore original array
+            swap(nums, start,  i); // a back swap to return as it was
         }
-
     }
 
-    private static void swap(int[] nums, int i, int j) {
-        int tmp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = tmp;
+    private static void swap(int[] nums, int i, int start) {
+        int temp = nums[i];
+        nums[i] = nums[start];
+        nums[start] = temp;
     }
-
 }

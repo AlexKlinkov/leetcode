@@ -1,14 +1,19 @@
 class Solution {
     public double findMaxAverage(int[] nums, int k) {
-        int currentSum = 0;
+        // 1. set a current sum as the first k-elements from initial array
+        double currentSum = 0;
         for (int i = 0; i < k; i++) {
             currentSum += nums[i];
         }
-        int maxSum = currentSum;
-        for (int i = k; i < nums.length; i++) {
+
+        // 2. set a sliding window, we add right element from an initial array and remove the left one
+        double currentMaxSum = currentSum;
+        for (int i = k; i < nums.length; i++) { //
             currentSum += nums[i] - nums[i - k];
-            maxSum = Math.max(maxSum, currentSum);
+            currentMaxSum = Math.max(currentMaxSum, currentSum); // 3. define the max sum
         }
-        return (double) maxSum / k;
+
+        // 4. calculate average value
+        return currentMaxSum / k;
     }
 }
